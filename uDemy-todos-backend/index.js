@@ -10,6 +10,10 @@ app.use(bodyParser.json());
 app.use(cors());
 app.use("/api/todos", todoRoutes);
 
+var mongoUri = process.env.MONGODB_URI || 'mongodb://localhost:3001/api/todos';
+
+mongoose.connect(mongoUri);
+
 app.use(function(req, res, next) {
   let err = new Error("Not Found");
   err.status = 404;
